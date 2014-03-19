@@ -20,8 +20,16 @@ public class TesteMB extends TestGridMB {
 	private static final long serialVersionUID = 1L;
 
 	private String selectedMovies = "1";
+	
+	private String categoriaSelecionada = "1";
+	
+	private String filmeSelecionado = "1";
 
 	private Map<String, String> movies;
+	
+	private Map<String, String> categorias;
+	
+	private Map<String, String> filmes;
 	
     private boolean value1;  
     
@@ -37,6 +45,14 @@ public class TesteMB extends TestGridMB {
 		movies.put("Opção 1", "Opção 1");
 		movies.put("Opção 2", "Opção 2");
 		movies.put("Opção 3", "Opção 3");
+		
+		categorias = new HashMap<String, String>();
+		categorias.put("Ação", "Ação");
+		categorias.put("Drama", "Drama");
+		categorias.put("Comédia", "Comédia");
+		
+		mudarCategoria(null);
+		
 	}
 
 	public String teste() {
@@ -52,9 +68,33 @@ public class TesteMB extends TestGridMB {
 	public boolean getExibiBotao() {
 		return (selectedMovies != null && !selectedMovies.equals("0"));
 	}
+	
+	public boolean getExibiFilme() {
+		return (filmeSelecionado != null && !filmeSelecionado.equals("0"));
+	}
 
 	public void mudaOpcao(ActionEvent event) {
 		log.debug(selectedMovies);
+	}
+	
+	public void mudarCategoria(ActionEvent event) {
+		filmes = new HashMap<String, String>();
+		if (categoriaSelecionada.equals("Ação")){
+			filmes.put("Jogos Vorazes - Em Chamas", "Jogos Vorazes - Em Chamas");	
+			filmes.put("O Senhor dos Anéis - O Retorno do Rei", "O Senhor dos Anéis - O Retorno do Rei");
+			filmes.put("Thor: O Mundo Sombrio", "Thor: O Mundo Sombrio");			
+		} else
+		if (categoriaSelecionada.equals("Drama")){
+			filmes.put("A Primeira Coisa Bela", "A Primeira Coisa Bela");
+			filmes.put("Amores Imaginários", "Amores Imaginários");
+			filmes.put("Another Year", "Another Year");
+		}else 
+		if (categoriaSelecionada.equals("Comédia")){
+			filmes.put("Forrest Gump", "Forrest Gump");
+			filmes.put("Te Pego Lá Fora (1987)", "Te Pego Lá Fora (1987)");
+		}else{
+			filmes.clear();
+		}
 	}
 
 	public Integer getDelay() {
@@ -67,6 +107,39 @@ public class TesteMB extends TestGridMB {
 
 	public String getSelectedMovies() {
 		return selectedMovies;
+	}
+	
+
+	public String getCategoriaSelecionada() {
+		return categoriaSelecionada;
+	}
+
+	public void setCategoriaSelecionada(String categoriaSelecionada) {
+		this.categoriaSelecionada = categoriaSelecionada;
+	}
+
+	public String getFilmeSelecionado() {
+		return filmeSelecionado;
+	}
+
+	public void setFilmeSelecionado(String filmeSelecionado) {
+		this.filmeSelecionado = filmeSelecionado;
+	}
+
+	public Map<String, String> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(Map<String, String> categorias) {
+		this.categorias = categorias;
+	}
+
+	public Map<String, String> getFilmes() {
+		return filmes;
+	}
+
+	public void setFilmes(Map<String, String> filmes) {
+		this.filmes = filmes;
 	}
 
 	public void setSelectedMovies(String selectedMovies) {

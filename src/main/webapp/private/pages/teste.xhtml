@@ -40,18 +40,44 @@
         			<f:selectItems value="#{testeMB.movies}" /> 
         			<p:ajax event="change" actionListener="#{testeMB.mudaOpcao}" update="formObra" /> 
     			</p:selectOneMenu>  
+    			
+
+    			
 
 			
     			<p:commandButton id="btSubmit" value="Exibir" update="display" oncomplete="dlg.show()" rendered="#{testeMB.exibiBotao}"  />
     			
     		</h:panelGrid>  
     		
+			<h:panelGrid columns="3">
+			
+				<p:selectOneMenu value="#{testeMB.categoriaSelecionada}" label="Categorias" filter="true" filterText="Filter" filterMatchMode="startsWith" style="width:220px">
+					<f:selectItem itemLabel="Selecione..." itemValue="0" />    
+        			<f:selectItems value="#{testeMB.categorias}" /> 
+        			<p:ajax event="change" actionListener="#{testeMB.mudarCategoria}" update="formObra" /> 
+    			</p:selectOneMenu>  
+
+				<p:selectOneMenu value="#{testeMB.filmeSelecionado}" label="Films" filter="true" filterText="Filter" filterMatchMode="startsWith" style="width:220px" rendered="#{testeMB.exibiBotao}">
+					<f:selectItem itemLabel="Selecione..." itemValue="0" />    
+        			<f:selectItems value="#{testeMB.filmes}" /> 
+        			<p:ajax event="change" actionListener="#{testeMB.mudaFilme}" update="formObra" /> 
+    			</p:selectOneMenu>  
+
+    			<p:commandButton id="btSubmit2" value="Exibir" update="displayFilme" oncomplete="dlgFilme.show()" rendered="#{testeMB.exibiFilme}"  />
+    			
+    		</h:panelGrid>      		
+    		
     		<p:separator style="margin-bottom:10px"/>
   
    			<p:dialog header="Opção Selecionada" widgetVar="dlg" resizable="false">  
-       			<p:dataList id="display" value="#{testeMB.selectedMovies}" var="movie">#{movie}</p:dataList>
-       			<p:commandButton value="Fechar" oncomplete="dlg.hide()" />  
+       				<p:dataList id="display" value="#{testeMB.selectedMovies}" var="movie">#{movie}</p:dataList>
+       				<p:commandButton value="Fechar" oncomplete="dlg.hide()" />  
    			</p:dialog>
+
+   			<p:dialog header="Filme Escolhido" widgetVar="dlgFilme" resizable="false">  
+       				<p:dataList id="displayFilme" value="#{testeMB.filmeSelecionado}" var="filme">#{filme}</p:dataList>
+       				<p:commandButton value="Fechar" oncomplete="dlgFilme.hide()" />  
+   			</p:dialog>   			
    			
    			<p:separator style="margin-bottom:10px"/>  
    			
